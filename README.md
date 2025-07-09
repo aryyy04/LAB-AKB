@@ -16,6 +16,20 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npx expo start
    ```
 
+## Struktur Tampilan
+
+- **Segitiga**: Hiasan visual di bagian atas.
+- **Persegi panjang**: Menampilkan nama dengan ikon orang.
+- **Bentuk pil**: Menampilkan NIM dengan ikon kartu identitas.
+
+## Teknologi
+
+- [Expo](https://expo.dev/)
+- [React](https://react.dev/)
+- Styling menggunakan inline style pada React.
+
+---
+
 In the output, you'll find options to open the app in a
 
 - [development build](https://docs.expo.dev/develop/development-builds/introduction/)
