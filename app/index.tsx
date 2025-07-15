@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
-import { Image as ExpoImage } from "expo-image"
 
 const initialGridImages = [
-  { id: 1, mainSrc: 'https://picsum.photos/id/1011/200', altSrc: 'https://picsum.photos/id/1025/200', isFlipped: false, scale: 1 },
-  { id: 2, mainSrc: 'https://picsum.photos/id/1012/200', altSrc: 'https://picsum.photos/id/1026/200', isFlipped: false, scale: 1 },
-  { id: 3, mainSrc: 'https://picsum.photos/id/1013/200', altSrc: 'https://picsum.photos/id/1027/200', isFlipped: false, scale: 1 },
-  { id: 4, mainSrc: 'https://picsum.photos/id/1014/200', altSrc: 'https://picsum.photos/id/1028/200', isFlipped: false, scale: 1 },
-  { id: 5, mainSrc: 'https://picsum.photos/id/1015/200', altSrc: 'https://picsum.photos/id/1029/200', isFlipped: false, scale: 1 },
-  { id: 6, mainSrc: 'https://picsum.photos/id/1016/200', altSrc: 'https://picsum.photos/id/1030/200', isFlipped: false, scale: 1 },
-  { id: 7, mainSrc: 'https://picsum.photos/id/1018/200', altSrc: 'https://picsum.photos/id/1031/200', isFlipped: false, scale: 1 },
-  { id: 8, mainSrc: 'https://picsum.photos/id/1020/200', altSrc: 'https://picsum.photos/id/1032/200', isFlipped: false, scale: 1 },
-  { id: 9, mainSrc: 'https://picsum.photos/id/1021/200', altSrc: 'https://picsum.photos/id/1033/200', isFlipped: false, scale: 1 },
+  { id: 1, mainSrc: 'https://picsum.photos/id/1011/200', altSrc: 'https://picsum.photos/id/1025/200', isFlipped: false },
+  { id: 2, mainSrc: 'https://picsum.photos/id/1012/200', altSrc: 'https://picsum.photos/id/1026/200', isFlipped: false },
+  { id: 3, mainSrc: 'https://picsum.photos/id/1013/200', altSrc: 'https://picsum.photos/id/1027/200', isFlipped: false },
+  { id: 4, mainSrc: 'https://picsum.photos/id/1014/200', altSrc: 'https://picsum.photos/id/1028/200', isFlipped: false },
+  { id: 5, mainSrc: 'https://picsum.photos/id/1015/200', altSrc: 'https://picsum.photos/id/1029/200', isFlipped: false },
+  { id: 6, mainSrc: 'https://picsum.photos/id/1016/200', altSrc: 'https://picsum.photos/id/1030/200', isFlipped: false },
+  { id: 7, mainSrc: 'https://picsum.photos/id/1018/200', altSrc: 'https://picsum.photos/id/1031/200', isFlipped: false },
+  { id: 8, mainSrc: 'https://picsum.photos/id/1020/200', altSrc: 'https://picsum.photos/id/1032/200', isFlipped: false },
+  { id: 9, mainSrc: 'https://picsum.photos/id/1021/200', altSrc: 'https://picsum.photos/id/1033/200', isFlipped: false },
 ];
 
 export default function Index() {
@@ -20,17 +19,11 @@ export default function Index() {
 
   const handleImagePress = (imageId: number) => {
     setGridImages(currentImages =>
-      currentImages.map(image => {
-        if (image.id === imageId) {
-          const nextScale = Math.min(image.scale * 1.2, 2.4);
-          return {
-            ...image,
-            isFlipped: !image.isFlipped,
-            scale: nextScale,
-          };
-        }
-        return image;
-      })
+      currentImages.map(image =>
+        image.id === imageId
+          ? { ...image, isFlipped: !image.isFlipped }
+          : image
+      )
     );
   };
 
@@ -60,10 +53,7 @@ export default function Index() {
           >
             <Image
               source={{ uri: image.isFlipped ? image.altSrc : image.mainSrc }}
-              style={[
-                styles.gridImage,
-                { transform: [{ scale: image.scale }] },
-              ]}
+              style={styles.gridImage}
               resizeMode="cover"
             />
           </TouchableOpacity>
@@ -155,6 +145,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFDD0',
     borderRadius: 8,
     overflow: 'hidden',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   gridImage: {
     width: '100%',
