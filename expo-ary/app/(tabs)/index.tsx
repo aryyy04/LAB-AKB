@@ -1,68 +1,54 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { Link } from 'expo-router';
+import { DATA_MAHASISWA } from '../../data/mahasiswa';
+import { Ionicons } from '@expo/vector-icons';
 
-// Halaman utama yang menampilkan informasi tentang Unismuh Makassar
-export default function HomeScreen() {
+export default function DaftarMahasiswaScreen() {
+  const renderItem = ({ item }) => (
+    <Link href={`/mahasiswa/${item.nim}`} asChild>
+      <TouchableOpacity style={styles.itemContainer}>
+        <Ionicons name="person-circle-outline" size={24} color="#007AFF" />
+        <Text style={styles.itemText}>{item.nama}</Text>
+      </TouchableOpacity>
+    </Link>
+  );
+
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.content}>
-        <Text style={styles.header}>Universitas Muhammadiyah Makassar</Text>
-        
-        {/* Pastikan Anda memiliki gambar 'unismuh.png' di folder 'assets/images' */}
-        <Image 
-          source={require('../../assets/images/unismuh.png')} 
-          style={styles.image} 
-        />
-        
-        <Text style={styles.title}>Lokasi</Text>
-        <Text style={styles.description}>
-          Jl. Sultan Alauddin No. 259, Gn. Sari, Kec. Rappocini, Kota Makassar, Sulawesi Selatan 90221
-        </Text>
-        
-        <Text style={styles.title}>Tentang Unismuh</Text>
-        <Text style={styles.description}>
-          Universitas Muhammadiyah Makassar (Unismuh), yang didirikan pada 19 Juni 1963, adalah salah satu perguruan tinggi swasta terkemuka di Indonesia Timur yang mendedikasikan dirinya pada pengembangan ilmu pengetahuan, teknologi, dan seni secara terpadu. Dengan berlandaskan pada nilai-nilai Islam yang fundamental, Unismuh memiliki visi untuk membentuk lulusan yang unggul, yang tidak hanya cerdas secara akademis tetapi juga memiliki akhlak mulia serta daya saing tinggi untuk dapat berkontribusi secara signifikan di tengah masyarakat global.
-        </Text>
-      </View>
-    </ScrollView>
+    <View style={styles.container}>
+      <FlatList
+        data={DATA_MAHASISWA}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.nim}
+        contentContainerStyle={styles.list}
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f0f4f7',
+    backgroundColor: '#f0f0f0',
   },
-  content: {
-    padding: 20,
+  list: {
+    padding: 16,
+  },
+  itemContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
-  },
-  header: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  image: {
-    width: 150,
-    height: 150,
-    resizeMode: 'contain',
-    marginBottom: 20,
-    borderRadius: 75, // Membuat gambar sedikit membulat
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#1E90FF',
-    marginTop: 20,
+    backgroundColor: '#fff',
+    padding: 16,
     marginBottom: 10,
-    alignSelf: 'flex-start',
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
   },
-  description: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: '#555',
-    textAlign: 'justify',
+  itemText: {
+    fontSize: 18,
+    marginLeft: 12,
   },
 });

@@ -12,7 +12,7 @@ export default function ProfileScreen() {
             source={require('../../assets/images/profile.png')}
             style={styles.profileImage}
           />
-          <Text style={styles.name}>[ALRYADI ASMU'ADZAN]</Text>
+          <Text style={styles.name}>[AKU BOCIL ROBLOX]</Text>
           <Text style={styles.nim}>[105841114022]</Text>
         </View>
 
