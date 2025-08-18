@@ -1,3 +1,6 @@
+// File ini berisi data dummy untuk daftar mahasiswa.
+// Pastikan path impor ke file ini sudah benar di file lain.
+
 export const DATA_MAHASISWA = [
   {
     nim: "105841113422",

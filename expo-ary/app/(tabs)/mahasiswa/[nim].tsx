@@ -1,29 +1,33 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ActivityIndicator } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
-import { DATA_MAHASISWA } from '../../../data/mahasiswa';
+import { DATA_MAHASISWA } from '../../../data/mahasiswa'; // Perhatikan path ini
+
+// Halaman ini menampilkan detail dari mahasiswa yang dipilih.
 
 export default function DetailMahasiswaScreen() {
-  const { nim } = useLocalSearchParams(); // Mengambil parameter 'nim' dari URL
+  // Mengambil parameter 'nim' dari URL/route
+  const { nim } = useLocalSearchParams();
 
-  // Cari data mahasiswa berdasarkan NIM
+  // Cari data mahasiswa yang sesuai berdasarkan NIM
   const mahasiswa = DATA_MAHASISWA.find((m) => m.nim === nim);
 
+  // Tampilkan pesan jika data tidak ditemukan
   if (!mahasiswa) {
     return (
       <View style={styles.container}>
-        <Text>Mahasiswa tidak ditemukan.</Text>
+        <Text>Data mahasiswa tidak ditemukan.</Text>
       </View>
     );
   }
 
+  // Tampilkan detail mahasiswa jika data ditemukan
   return (
     <View style={styles.container}>
       <View style={styles.card}>
         <Image
           source={{ uri: mahasiswa.fotoUrl }}
           style={styles.foto}
-          // Tampilkan loading indicator saat gambar dimuat
           onLoadStart={() => <ActivityIndicator />}
         />
         <Text style={styles.nama}>{mahasiswa.nama}</Text>
@@ -38,8 +42,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f0f0f0',
     padding: 20,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
+    paddingTop: 40,
   },
   card: {
     width: '90%',
@@ -58,13 +63,14 @@ const styles = StyleSheet.create({
     height: 150,
     borderRadius: 75,
     marginBottom: 20,
-    borderWidth: 3,
+    borderWidth: 4,
     borderColor: '#007AFF',
   },
   nama: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 8,
+    textAlign: 'center',
   },
   nim: {
     fontSize: 18,
