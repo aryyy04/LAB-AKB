@@ -1,102 +1,68 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import { MaterialIcons, Ionicons, FontAwesome, AntDesign, Entypo } from '@expo/vector-icons';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-export default function Index() {
+// Halaman utama yang menampilkan informasi tentang Unismuh Makassar
+export default function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Koleksi 10 Ikon</Text>
-      
-      {/* Container untuk menata ikon-ikon */}
-      <View style={styles.iconContainer}>
-        {/* Ikon dari MaterialIcons */}
-        <View style={styles.iconWrapper}>
-          <MaterialIcons name="home" size={40} color="#3498db" />
-          <Text style={styles.iconLabel}>Home</Text>
-        </View>
+    <ScrollView style={styles.container}>
+      <View style={styles.content}>
+        <Text style={styles.header}>Universitas Muhammadiyah Makassar</Text>
         
-        {/* Ikon dari Ionicons */}
-        <View style={styles.iconWrapper}>
-          <Ionicons name="settings-sharp" size={40} color="#2ecc71" />
-          <Text style={styles.iconLabel}>Settings</Text>
-        </View>
-
-        {/* Ikon dari FontAwesome */}
-        <View style={styles.iconWrapper}>
-          <FontAwesome name="user" size={40} color="#e74c3c" />
-          <Text style={styles.iconLabel}>Profile</Text>
-        </View>
-
-        {/* Ikon dari AntDesign */}
-        <View style={styles.iconWrapper}>
-          <AntDesign name="heart" size={40} color="#9b59b6" />
-          <Text style={styles.iconLabel}>Favorite</Text>
-        </View>
-
-        {/* Ikon dari Entypo */}
-        <View style={styles.iconWrapper}>
-          <Entypo name="camera" size={40} color="#f1c40f" />
-          <Text style={styles.iconLabel}>Camera</Text>
-        </View>
-
-        {/* Ikon lainnya untuk melengkapi 10 */}
-        <View style={styles.iconWrapper}>
-          <MaterialIcons name="shopping-cart" size={40} color="#1abc9c" />
-          <Text style={styles.iconLabel}>Cart</Text>
-        </View>
+        {/* Pastikan Anda memiliki gambar 'unismuh.png' di folder 'assets/images' */}
+        <Image 
+          source={require('../../assets/images/unismuh.png')} 
+          style={styles.image} 
+        />
         
-        <View style={styles.iconWrapper}>
-          <Ionicons name="notifications" size={40} color="#e67e22" />
-          <Text style={styles.iconLabel}>Alerts</Text>
-        </View>
-
-        <View style={styles.iconWrapper}>
-          <FontAwesome name="star" size={40} color="#34495e" />
-          <Text style={styles.iconLabel}>Rating</Text>
-        </View>
-
-        <View style={styles.iconWrapper}>
-          <AntDesign name="search1" size={40} color="#d35400" />
-          <Text style={styles.iconLabel}>Search</Text>
-        </View>
-
-        <View style={styles.iconWrapper}>
-          <Entypo name="mail" size={40} color="#c0392b" />
-          <Text style={styles.iconLabel}>Mail</Text>
-        </View>
+        <Text style={styles.title}>Lokasi</Text>
+        <Text style={styles.description}>
+          Jl. Sultan Alauddin No. 259, Gn. Sari, Kec. Rappocini, Kota Makassar, Sulawesi Selatan 90221
+        </Text>
+        
+        <Text style={styles.title}>Tentang Unismuh</Text>
+        <Text style={styles.description}>
+          Universitas Muhammadiyah Makassar (Unismuh), yang didirikan pada 19 Juni 1963, adalah salah satu perguruan tinggi swasta terkemuka di Indonesia Timur yang mendedikasikan dirinya pada pengembangan ilmu pengetahuan, teknologi, dan seni secara terpadu. Dengan berlandaskan pada nilai-nilai Islam yang fundamental, Unismuh memiliki visi untuk membentuk lulusan yang unggul, yang tidak hanya cerdas secara akademis tetapi juga memiliki akhlak mulia serta daya saing tinggi untuk dapat berkontribusi secara signifikan di tengah masyarakat global.
+        </Text>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f0f4f7', // Warna latar belakang netral
+    backgroundColor: '#f0f4f7',
+  },
+  content: {
     padding: 20,
+    alignItems: 'center',
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  image: {
+    width: 150,
+    height: 150,
+    resizeMode: 'contain',
+    marginBottom: 20,
+    borderRadius: 75, // Membuat gambar sedikit membulat
   },
   title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: 40,
-    color: '#333',
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#1E90FF',
+    marginTop: 20,
+    marginBottom: 10,
+    alignSelf: 'flex-start',
   },
-  iconContainer: {
-    flexDirection: 'row', // Menyusun ikon secara horizontal
-    flexWrap: 'wrap',     // Membuat ikon pindah ke baris baru jika tidak muat
-    justifyContent: 'center', // Ikon ditata di tengah secara horizontal
-    maxWidth: '100%',
-  },
-  iconWrapper: {
-    alignItems: 'center', // Teks berada di tengah ikon
-    margin: 15,          // Jarak antar ikon
-    width: 80,           // Lebar setiap wrapper ikon
-  },
-  iconLabel: {
-    marginTop: 8,        // Jarak antara ikon dan teks
-    fontSize: 12,
+  description: {
+    fontSize: 16,
+    lineHeight: 24,
     color: '#555',
+    textAlign: 'justify',
   },
 });
